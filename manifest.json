@@ -1,0 +1,14 @@
+{
+  "name": "PJSON",
+  "version": "1.0",
+  "description": "Preety print JSON",
+  "permissions": [
+  ],
+  "browser_action": {
+      "default_title": "PJSON",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+  },
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
+}

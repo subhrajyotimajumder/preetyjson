@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1265.21">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">function output(inp) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.body.appendChild(document.createElement('pre')).innerHTML = inp;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function syntaxHighlight(json) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>json = json.replace(/&amp;/g, '&amp;amp;').replace(/&lt;/g, '&amp;lt;').replace(/&gt;/g, '&amp;gt;');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>var cls = 'number';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (/^"/.test(match)) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (/:$/.test(match)) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>cls = 'key';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>cls = 'string';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (/true|false/.test(match)) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cls = 'boolean';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (/null/.test(match)) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cls = 'null';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return '&lt;span class="' + cls + '"&gt;' + match + '&lt;/span&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">var obj = {a:1, 'b':'foo', c:[false,'false',null, 'null', {d:{e:1.3e5,f:'1.3e5'}}]};</p>
+<p class="p1">var str = JSON.stringify(obj, undefined, 4);</p>
+<p class="p2"><br></p>
+<p class="p1">//output(str);</p>
+<p class="p1">output(syntaxHighlight(str));</p>
+</body>
+</html>
